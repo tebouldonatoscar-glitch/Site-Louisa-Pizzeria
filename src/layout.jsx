@@ -104,9 +104,17 @@ function Footer({ go, onToast }) {
                 </li>
               ))}
               <li>
-                <button onClick={() => onToast && onToast("Le menu PDF arrive très bientôt 📄")} className="inline-flex items-center gap-2 text-cream/80 transition-colors hover:text-pink">
-                  <IconDownload size={15} /> Menu (PDF)
-                </button>
+                {MENU_READY ? (
+                  <a href={MENU_PDF_URL} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-cream/80 transition-colors hover:text-pink">
+                    <IconDownload size={15} /> Menu (PDF)
+                  </a>
+                ) : (
+                  <button onClick={() => onToast && onToast("Le menu PDF arrive très bientôt 📄")}
+                    className="inline-flex items-center gap-2 text-cream/80 transition-colors hover:text-pink">
+                    <IconDownload size={15} /> Menu (PDF)
+                  </button>
+                )}
               </li>
             </ul>
           </div>

@@ -38,7 +38,10 @@ function HomePage({ go, onToast, onAdmin }) {
                 <IconArrow size={18} className="transition-transform group-hover:translate-x-1" />
               </Btn>
               <Btn variant="outline" tone="red" href={"tel:" + CONTACT.phoneTel}>
-                Commander à emporter
+                <IconPhone size={17} /> Commander à emporter
+              </Btn>
+              <Btn variant="outline" tone="red" href={CONTACT.whatsapp} target="_blank">
+                <IconWhatsapp size={17} /> WhatsApp
               </Btn>
             </div>
           </Reveal>
@@ -208,7 +211,10 @@ function HomePage({ go, onToast, onAdmin }) {
                 <Btn href={"tel:" + CONTACT.phoneTel} variant="solid" tone="pink" className="!text-red">
                   <IconPhone size={17} /> Commander
                 </Btn>
-                <Btn variant="outline" tone="pink" onClick={() => go("carte")} className="border-white text-white hover:!bg-white hover:!text-red">
+                <Btn href={CONTACT.whatsapp} target="_blank" variant="outline" tone="pink" className="border-white text-white hover:!bg-white hover:!text-red">
+                  <IconWhatsapp size={17} /> WhatsApp
+                </Btn>
+                <Btn variant="outline" tone="pink" onClick={() => go("carte")} className="border-white/60 text-white/70 hover:!bg-white hover:!text-red">
                   Voir la carte
                 </Btn>
               </div>
