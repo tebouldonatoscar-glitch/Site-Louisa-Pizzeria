@@ -25,7 +25,6 @@ function App() {
   const [admin, setAdmin] = useState(null);
   const { toasts, push } = useToasts();
   const [anim, setAnim] = useState("page-enter");
-  const [tweaks, setTweak] = useTweaks();
 
   const go = useCallback((p) => {
     if (p === page) { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
@@ -62,9 +61,9 @@ function App() {
       </main>
       <Footer go={go} onToast={push} />
       <MobileActionBar />
+      <FloatingWhatsApp />
       <AdminModal action={admin} onClose={() => setAdmin(null)} />
       <ToastStack toasts={toasts} />
-      <TweaksPanel tweaks={tweaks} set={setTweak} />
     </div>
   );
 }

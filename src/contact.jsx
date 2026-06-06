@@ -78,9 +78,11 @@ function ContactPage({ onToast }) {
                 <Btn href={"tel:" + CONTACT.phoneTel} tone="red" className="flex-1">
                   <IconPhone size={18} /> Appeler
                 </Btn>
-                <Btn href={CONTACT.whatsapp} target="_blank" variant="outline" tone="pink" className="flex-1">
-                  <IconWhatsapp size={18} /> WhatsApp
-                </Btn>
+                {CONTACT.whatsapp && (
+                  <Btn href={CONTACT.whatsapp} target="_blank" variant="outline" tone="pink" className="flex-1">
+                    <IconWhatsapp size={18} /> WhatsApp
+                  </Btn>
+                )}
               </div>
               <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                 <Btn href={CONTACT.instagram} target="_blank" variant="ghost" className="flex-1 !justify-start gap-2.5 border border-line">
