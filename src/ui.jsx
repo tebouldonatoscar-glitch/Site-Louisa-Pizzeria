@@ -164,6 +164,33 @@ function ToastStack({ toasts }) {
   );
 }
 
+// ── Statut ouvert / fermé (heure Martinique) ─────────────────
+function computeOpenStatus() {
+  try {
+    const mq = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Martinique' }));
+    const day = mq.getDay(); // 0=Dim … 6=Sam
+    const mins = mq.getHours() * 60 + mq.getMinutes();
+    if (day === 0 || day === 1) return { open: false, label: "Fermé aujourd'hui" };
+    if (day === 6) {
+      if (mins >= 18*60 && mins < 23*60+30) return { open: true,  label: "Ouvert · jusqu'à 23h30" };
+      if (mins < 18*60)                     return { open: false, label: "Ouvre à 18h00" };
+      return { open: false, label: "Fermé pour ce soir" };
+    }
+    if (mins >= 12*60 && mins < 23*60+30) return { open: true,  label: "Ouvert · jusqu'à 23h30" };
+    if (mins < 12*60)                     return { open: false, label: "Ouvre à 12h00" };
+    return { open: false, label: day === 5 ? "Fermé · ouvre Sam 18h" : "Fermé · ouvre demain" };
+  } catch { return null; }
+}
+
+function useOpenStatus() {
+  const [s, setS] = useState(computeOpenStatus);
+  useEffect(() => {
+    const id = setInterval(() => setS(computeOpenStatus()), 60000);
+    return () => clearInterval(id);
+  }, []);
+  return s;
+}
+
 Object.assign(window, {
-  Img, Badge, Btn, Reveal, Kicker, DietTag, Logo, MenuDownloadBtn, useToasts, ToastStack, toneMap,
+  Img, Badge, Btn, Reveal, Kicker, DietTag, Logo, MenuDownloadBtn, useToasts, ToastStack, toneMap, useOpenStatus,
 });

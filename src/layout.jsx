@@ -11,6 +11,7 @@ const NAV = [
 function Navbar({ page, go, onToast }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const status = useOpenStatus();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -43,6 +44,13 @@ function Navbar({ page, go, onToast }) {
                 )}
               </button>
             ))}
+            {status && (
+              <span className={"ml-2 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-bold " +
+                (status.open ? "border-green/30 bg-green/10 text-green" : "border-cream/15 bg-cream/5 text-muted")}>
+                <span className={"h-1.5 w-1.5 rounded-full " + (status.open ? "animate-pulse bg-green" : "bg-muted")} />
+                {status.label}
+              </span>
+            )}
           </nav>
 
           <div className="mr-2 flex items-center gap-2 sm:mr-6 lg:mr-10">
@@ -85,6 +93,7 @@ function Navbar({ page, go, onToast }) {
 }
 
 function Footer({ go, onToast }) {
+  const status = useOpenStatus();
   return (
     <footer className="border-t border-line bg-ink">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
@@ -123,8 +132,15 @@ function Footer({ go, onToast }) {
             <ul className="mt-4 space-y-3 text-sm text-cream/80">
               <li className="flex gap-2.5"><IconPin size={17} className="mt-0.5 shrink-0 text-blue" /> {CONTACT.address}</li>
               <li className="flex gap-2.5"><IconPhone size={17} className="shrink-0 text-blue" /> {CONTACT.phoneDisplay}</li>
+              {status && (
+                <li className="flex items-center gap-2">
+                  <span className={"h-2 w-2 shrink-0 rounded-full " + (status.open ? "animate-pulse bg-green" : "bg-red/50")} />
+                  <span className={"text-sm font-semibold " + (status.open ? "text-green" : "text-red/80")}>{status.label}</span>
+                </li>
+              )}
               <li className="flex gap-3 pt-1">
                 <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="grid h-10 w-10 place-items-center rounded-full border border-line transition-colors hover:border-pink hover:text-pink"><IconInstagram size={18} /></a>
+                {CONTACT.whatsapp && <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="grid h-10 w-10 place-items-center rounded-full border border-line transition-colors hover:border-green hover:text-green"><IconWhatsapp size={18} /></a>}
                 <a href={CONTACT.maps} target="_blank" rel="noopener noreferrer" className="grid h-10 w-10 place-items-center rounded-full border border-line transition-colors hover:border-blue hover:text-blue"><IconPin size={18} /></a>
               </li>
             </ul>
@@ -141,20 +157,23 @@ function Footer({ go, onToast }) {
 
 // ── Barre d'action mobile (sticky bas, hors desktop) ─────────
 function MobileActionBar() {
+  const cols = CONTACT.whatsapp ? "grid-cols-3" : "grid-cols-2";
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink/95 backdrop-blur-xl shadow-[0_-8px_24px_rgba(0,0,0,0.06)] md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
-      <div className="mx-auto grid max-w-md grid-cols-3 divide-x divide-line">
+      <div className={"mx-auto grid max-w-md divide-x divide-line " + cols}>
         <a href={"tel:" + CONTACT.phoneTel}
           className="flex flex-col items-center justify-center gap-1 py-3 text-red transition-colors active:bg-red/10">
           <IconPhone size={20} />
           <span className="text-[11px] font-bold uppercase tracking-wider">Appeler</span>
         </a>
-        <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center gap-1 py-3 text-green transition-colors active:bg-green/10">
-          <IconWhatsapp size={20} />
-          <span className="text-[11px] font-bold uppercase tracking-wider">WhatsApp</span>
-        </a>
+        {CONTACT.whatsapp && (
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center gap-1 py-3 text-green transition-colors active:bg-green/10">
+            <IconWhatsapp size={20} />
+            <span className="text-[11px] font-bold uppercase tracking-wider">WhatsApp</span>
+          </a>
+        )}
         <a href={CONTACT.maps} target="_blank" rel="noopener noreferrer"
           className="flex flex-col items-center justify-center gap-1 py-3 text-red transition-colors active:bg-red/10">
           <IconPin size={20} />
@@ -165,4 +184,17 @@ function MobileActionBar() {
   );
 }
 
-Object.assign(window, { NAV, Navbar, Footer, MobileActionBar });
+function FloatingWhatsApp() {
+  if (!CONTACT.whatsapp) return null;
+  const url = CONTACT.whatsapp + "?text=Bonjour+Chez+Louisa+%F0%9F%8D%95+Je+souhaite+commander+%C3%A0+emporter+!";
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      aria-label="Contacter par WhatsApp"
+      className="fixed bottom-[80px] right-4 z-[60] grid h-14 w-14 place-items-center rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl active:scale-95 md:bottom-6"
+      style={{ backgroundColor: "#25D366" }}>
+      <IconWhatsapp size={26} className="text-white" style={{ color: "white" }} />
+    </a>
+  );
+}
+
+Object.assign(window, { NAV, Navbar, Footer, MobileActionBar, FloatingWhatsApp });
