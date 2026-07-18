@@ -9,12 +9,12 @@ function HomeMenuPreview({ go }) {
   const [active, setActive] = useState(MENU[0].id);
   const cur = cats.find((c) => c.id === active) || cats[0];
   return (
-    <section className="relative mx-3 max-w-6xl overflow-hidden rounded-[2.5rem] px-6 py-14 sm:mx-auto sm:px-12 sm:py-20" style={{ background: "radial-gradient(125% 85% at 50% 50%, rgb(var(--ink)) 38%, rgb(var(--red) / 0.14) 100%)" }}>
+    <section className="relative mx-3 max-w-6xl overflow-hidden rounded-[2.5rem] px-6 py-14 sm:mx-auto sm:px-12 sm:py-20" style={{ background: "linear-gradient(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.06)), radial-gradient(125% 85% at 50% 50%, rgb(var(--ink)) 38%, rgb(var(--red) / 0.14) 100%)" }}>
       <Reveal>
         <div className="text-center">
           <h2 className="mx-auto max-w-3xl text-5xl italic leading-[1.0] tracking-tight text-red sm:text-6xl" style={{ fontFamily: '"DM Serif Display", serif' }}>
             Le menu<br />
-            <span className="not-italic font-display text-ink">en un coup d'œil.</span>
+            <span className="not-italic font-display text-white">en un coup d'œil.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
             Choisissez une catégorie · les plats apparaissent juste en dessous.
