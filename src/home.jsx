@@ -14,7 +14,7 @@ function HomeMenuPreview({ go }) {
         <div className="text-center">
           <h2 className="mx-auto max-w-3xl text-5xl italic leading-[1.0] tracking-tight text-red sm:text-6xl" style={{ fontFamily: '"DM Serif Display", serif' }}>
             Le menu<br />
-            <span className="not-italic font-display mt-1 inline-block rounded-2xl px-4 py-1.5 text-white" style={{ background: "rgb(var(--cream) / 0.94)" }}>en un coup d'œil.</span>
+            <span className="not-italic font-display mt-1 inline-block rounded-2xl bg-red px-4 py-1.5 text-white">en un coup d'œil.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
             Choisissez une catégorie · les plats apparaissent juste en dessous.
