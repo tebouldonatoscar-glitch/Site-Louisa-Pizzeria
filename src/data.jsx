@@ -7,16 +7,16 @@ const MENU_PDF_URL = "assets/menu-chez-louisa.pdf";
 
 // Images locales (livrées par l'équipe Louisa)
 const IMG = {
-  illustration: "assets/illustration-louisa.png",
-  logo: "assets/logo-louisa.png",
-  logoMark: "assets/logo-mark-pink.png",
-  salad: "assets/louisa-salad.png",
-  dessert: "assets/louisa-dessert.png",
-  pizzaBoard: "assets/pizza-1.png",       // Pizza légumes / oignons rouges
-  pizzaSpicy: "assets/pizza-2.png",       // Pizza chorizo-basilic
-  pizzaSlice: "assets/pizza-3.png",       // Part de pizza tenue à la main
-  facade:     "assets/louisa-facade.png", // Devanture du restaurant
-  boxes:      "assets/louisa-boxes.png",  // Boîtes pizza rayées Louisa
+  illustration: "assets/illustration-louisa.webp",
+  logo: "assets/logo-louisa.webp",
+  logoMark: "assets/logo-mark-pink.webp",
+  salad: "assets/louisa-salad.webp",
+  dessert: "assets/louisa-dessert.webp",
+  pizzaBoard: "assets/pizza-1.webp",       // Pizza légumes / oignons rouges
+  pizzaSpicy: "assets/pizza-2.webp",       // Pizza chorizo-basilic
+  pizzaSlice: "assets/pizza-3.webp",       // Part de pizza tenue à la main
+  facade:     "assets/louisa-facade.webp", // Devanture du restaurant
+  boxes:      "assets/louisa-boxes.webp",  // Boîtes pizza rayées Louisa
 };
 
 const BADGES = [
@@ -112,8 +112,9 @@ const CONTACT = {
   reservation: "https://bookings.zenchef.com/results?rid=386258&pid=1001",
   ubereats: "https://www.ubereats.com/store-browse-uuid/04e2a8ae-4871-52a3-b935-7fba529752d3?diningMode=DELIVERY",
   maps:
-    "https://www.google.com/maps/place/2+2+Louisa/@14.6040599,-61.0714455,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgMCw07Lu7QE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAPNQkAHOgLN75UJC-Cvhy1tGiDlJs5XC5uamOEPOAKzyRyLF74G-VmtFu3RNY4qDuC9ZK5JtMfv5GEOkJsp0CI69v7CgiSGRRGmLVnkwdrM8YWBJl4cRxUzZOQhaDe66HTNKwRwDeB40jA%3Dw203-h152-k-no!7i4096!8i3072!4m9!3m8!1s0x8c6aa7002ac5a77d:0x16f1202cc9990cb3!8m2!3d14.6040599!4d-61.0714455!10e5!14m1!1BCgIgAQ!16s%2Fg%2F11wv3ls8ws?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D",
-  instagram: "https://www.instagram.com/chezlouisa_fwi5",
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("13 Rue Garnier Pagès, Fort-de-France 97200, Martinique"),
+  instagram: "https://www.instagram.com/chezlouisa_fwi",
 };
 
 Object.assign(window, {
